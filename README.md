@@ -1,4 +1,4 @@
-# OSTF Sequence Arranger v1.0
+# OSTF Sequence Arranger v1.1
 
 **Free Max for Live sequence arranger for Ableton Live, built around the Open Song Timeline Format (OSTF).**
 
@@ -6,7 +6,7 @@ OSTF Sequence Arranger is a Max for Live MIDI composition, sequencing, arrangeme
 
 It is designed for producers, composers, songwriters, and arrangers who want to create structured MIDI sequences while keeping musical sections, harmony, timing, MIDI performance data, and song structure connected through OSTF.
 
-The device combines song-level structure editing with section-aware sequence generation, Ableton Live MIDI capture, visual sequence editing, OSTF import/export, and synchronized playback.
+The device combines song-level structure editing with section-aware sequence generation, Ableton Live MIDI capture, visual sequence editing, OSTF import/export, synchronized playback, and detailed OSTF visualization.
 
 ---
 
@@ -258,6 +258,8 @@ Text import and normal file opening are intended to produce the same musical doc
 
 OSTF VIEW provides a read-only visual inspection environment for the current OSTF document.
 
+The viewer is designed to inspect complete structured OSTF data without changing the song.
+
 It can display:
 
 - Song Sections
@@ -277,21 +279,49 @@ It can display:
 
 ### Piano Roll
 
-Melodic tracks are displayed using a conventional DAW-style piano roll with aligned note rows and pitch information.
+Melodic tracks are displayed using a conventional DAW-style piano roll.
+
+The viewer can show:
+
+- Note positions
+- Pitch rows
+- Section boundaries
+- Chord relationships
+- Velocity data
+- MIDI expression lanes
+- Track metadata
+
+Pitch rows and note positions are aligned to make the view usable like a conventional DAW piano roll.
 
 ### Drum Kit Roll
 
-Drum and percussion tracks automatically use a dedicated Drum Kit Roll.
+Drum and percussion tracks automatically switch to a dedicated Drum Kit Roll instead of using melodic piano-roll rows.
 
-The drum view can display:
+The Drum Kit Roll can display:
 
-- Drum roles
+- OSTF drum roles
 - OSTF Sound Slots
 - Saved MIDI note numbers
 - Drum event positions
-- Track information
+- Section relationships
+- Track metadata
+- Drum / percussion information
 
-This allows the same OSTF VIEW system to inspect both melodic and percussion-oriented OSTF tracks.
+Role and Sound Slot information are treated as the primary semantic identity of drum sounds, while stored MIDI note numbers can be shown alongside them when available.
+
+This allows OSTF VIEW to inspect both melodic and percussion-oriented OSTF tracks within the same viewer.
+
+### Track Inspector
+
+The viewer includes contextual information for the selected track, such as:
+
+- Track name
+- Role
+- Type
+- Preferred view
+- MIDI-related metadata
+- Sound Slot information where applicable
+- Other OSTF track properties
 
 ---
 
@@ -372,7 +402,7 @@ Depending on the source material and receiving instrument, OSTF may contain or p
 - Aftertouch
 - Additional expression metadata
 
-Support depends on the selected workflow and the destination instrument.
+Support depends on the selected workflow and destination instrument.
 
 ---
 
@@ -500,11 +530,28 @@ OSTF allows different specialized tools to work on different parts of the same s
 
 ---
 
-## Version 1.0
+## Version History
+
+### Version 1.1
+
+Viewer and compatibility update.
+
+- Fixed an issue where OSTF VIEW could remain blank after opening a valid OSTF document
+- Fixed missing OSTF VIEW helper dependencies that could stop the viewer during rendering
+- Updated OSTF VIEW using the latest viewer improvements shared with OSTF Drum Arranger
+- Improved melodic Piano Roll rendering
+- Improved Drum Kit Roll support
+- Added updated Role / Sound Slot handling for drum and percussion tracks
+- Added saved MIDI mapping information where available
+- Improved drum and melodic track detection
+- Improved OSTF VIEW track inspection
+- Preserved Sequence Arranger-specific generation, capture, Banks, Live I/O, OSTF TEXT, structure editing, and playback workflows
+
+### Version 1.0
 
 Initial public release.
 
-Major features include:
+Major features introduced in v1.0:
 
 - Structured song and Section editing
 - Song structure templates
@@ -550,6 +597,10 @@ OSTF Sequence Arranger is provided as a free Max for Live device.
 
 No payment is required to download or use the device.
 
+GitHub:
+
+https://github.com/yoh-nak/OSTF-Sequence-Arranger-M4L
+
 ---
 
 ## ☕ Support Free Development
@@ -582,13 +633,14 @@ OSTF Sequence Arranger and the Open Song Timeline Format are independently devel
 
 ## Feedback and Issues
 
-If you encounter a bug or unexpected behavior, please report it through GitHub Issues when available.
+If you encounter a bug or unexpected behavior, please report it through GitHub Issues.
 
 Useful information to include:
 
 - Ableton Live version
 - Max version
 - Operating system
+- Device version
 - Steps required to reproduce the problem
 - OSTF version
 - Relevant screenshots
